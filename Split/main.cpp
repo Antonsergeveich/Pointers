@@ -19,8 +19,9 @@ void main()
 	int odd_count = 0;
 	for (int i = 0; i < n; i++)
 	{
-		if (arr[i] % 2 == 0)even_count++;
-		else odd_count++;
+		arr[i] % 2 == 0 ? even_count++ : odd_count++;
+		/*if (arr[i] % 2 == 0)even_count++;
+		else odd_count++;*/
 	}
 	cout << "Количество чётных элементов: " << even_count << endl;
 	cout << "Количество  не чётных элементов: " << odd_count << endl;
@@ -32,16 +33,10 @@ void main()
 	//3)Копируем чётные и не чётные элементы в соответствующие массивы:
 	for (int i = 0, j = 0, k = 0; i < n; i++)
 	{
-		if (arr[i] % 2 == 0)
-		{
-			even_arr[j] = arr[i];
-			j++;
-		}
-		else
-		{
-			odd_arr[k] = arr[i];
-			k++;
-		}
+		//if (arr[i] % 2 == 0)even_arr[j++] = arr[i];
+		//else odd_arr[k++] = arr[i];
+		//(arr[i] % 2 == 0 ? even_arr[j++] : odd_arr[k++]) = arr[i];
+		(arr[i] % 2 ? odd_arr[k++] : even_arr[j++]) = arr[i];
 	}
 	//4)Вывод результатов:
 	Print(even_arr, even_count);
