@@ -15,8 +15,8 @@ void main()
 	setlocale(LC_ALL, "");
 	int a = 2, b = 3;
 	cout << a << "\t" << b << endl;
-	Exchange(a, b);//по ссылке
-	//Exchange_1(&a, &b);// по указателю
+	//Exchange(a, b);//по ссылке
+	Exchange_1(&a, &b);// по указателю
 	cout << a << "\t" << b << endl;
 }
 

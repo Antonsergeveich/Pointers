@@ -1,11 +1,11 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
-
-
 
 void FillRand(int arr[], const int n);
 void Print(int arr[], const int n);
+
 #define tab "\t"
+
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -13,8 +13,7 @@ void main()
 	int arr[n]{};
 	FillRand(arr, n);
 	Print(arr, n);
-
-	//1)Вычисляем количество чётных и не чётных элементов:
+	//1)Р’С‹С‡РёСЃР»СЏРµРј РєРѕР»РёС‡РµСЃС‚РІРѕ С‡С‘С‚РЅС‹С… Рё РЅРµ С‡С‘С‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ:
 	int even_count = 0;
 	int odd_count = 0;
 	for (int i = 0; i < n; i++)
@@ -24,30 +23,26 @@ void main()
 		/*if (arr[i] % 2 == 0)even_count++;
 		else odd_count++;*/
 	}
-	cout << "Количество чётных элементов: " << even_count << endl;
-	cout << "Количество  не чётных элементов: " << odd_count << endl;
-
-	//2) Выделяем память для массивов:
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ С‡С‘С‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ: " << even_count << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ  РЅРµ С‡С‘С‚РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ: " << odd_count << endl;
+	//2) Р’С‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РґР»СЏ РјР°СЃСЃРёРІРѕРІ:
 	int* even_arr = new int[even_count];
 	int* odd_arr = new int[odd_count];
-
-	//3)Копируем чётные и не чётные элементы в соответствующие массивы:
+	//3)РљРѕРїРёСЂСѓРµРј С‡С‘С‚РЅС‹Рµ Рё РЅРµ С‡С‘С‚РЅС‹Рµ СЌР»РµРјРµРЅС‚С‹ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёРµ РјР°СЃСЃРёРІС‹:
 	for (int i = 0, j = 0, k = 0; i < n; i++)
 	{
+		(arr[i] & 1 ? odd_arr[k++] : even_arr[j++]) = arr[i];
 		//if (arr[i] % 2 == 0)even_arr[j++] = arr[i];
 		//else odd_arr[k++] = arr[i];
 		//(arr[i] % 2 == 0 ? even_arr[j++] : odd_arr[k++]) = arr[i];
 		//(arr[i] % 2 ? odd_arr[k++] : even_arr[j++]) = arr[i];
-		(arr[i] & 1 ? odd_arr[k++] : even_arr[j++]) = arr[i];
 	}
-	//4)Вывод результатов:
+	//4)Р’С‹РІРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ:
 	Print(even_arr, even_count);
 	Print(odd_arr, odd_count);
-
-	//5)Удаление массивов:
+	//5)РЈРґР°Р»РµРЅРёРµ РјР°СЃСЃРёРІРѕРІ:
 	delete[] odd_arr;
 	delete[] even_arr;
-
 }
 
 void FillRand(int arr[], const int n)
