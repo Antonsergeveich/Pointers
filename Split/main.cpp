@@ -37,7 +37,8 @@ void main()
 		//if (arr[i] % 2 == 0)even_arr[j++] = arr[i];
 		//else odd_arr[k++] = arr[i];
 		//(arr[i] % 2 == 0 ? even_arr[j++] : odd_arr[k++]) = arr[i];
-		(arr[i] % 2 ? odd_arr[k++] : even_arr[j++]) = arr[i];
+		//(arr[i] % 2 ? odd_arr[k++] : even_arr[j++]) = arr[i];
+		(arr[i] & 1 ? odd_arr[k++] : even_arr[j++]) = arr[i];
 	}
 	//4)Вывод результатов:
 	Print(even_arr, even_count);
