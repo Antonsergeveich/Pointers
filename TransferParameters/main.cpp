@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 
 /*
@@ -7,16 +7,16 @@ using namespace std;
 3. By reference;
 */
 
-void Exchange(int& a, int& b);// по ссылке
-void Exchange_1(int* a, int* b);// по указателю
+void Exchange(int& a, int& b);// РїРѕ СЃСЃС‹Р»РєРµ
+void Exchange_1(int* a, int* b);// РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ
 
 void main()
 {
 	setlocale(LC_ALL, "");
 	int a = 2, b = 3;
 	cout << a << "\t" << b << endl;
-	//Exchange(a, b);//по ссылке
-	Exchange_1(&a, &b);// по указателю
+	//Exchange(a, b);//РїРѕ СЃСЃС‹Р»РєРµ
+	Exchange_1(&a, &b);// РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ
 	cout << a << "\t" << b << endl;
 }
 
