@@ -7,8 +7,8 @@ using std::endl;
 
 #define tab "\t"
 
-//#define DYNAMIC_MEMORY_1
-#define DYNAMIC_MEMORY_2
+#define DYNAMIC_MEMORY_1
+//#define DYNAMIC_MEMORY_2
 
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int rows, const int cols);
@@ -18,7 +18,7 @@ int* push_back(int arr[], int &n, int value);//добавить значение
 int* push_front(int arr[], int &n, int value);//добавить значение в начало массива
 int* pop_back(int arr[], int& n);//убрать значение в конце массива
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
-int* insert(int arr[], int &n, int value);//добавить значение по указанному индексу
+int* insert(int arr[], int &n, int value, int index);//добавить значение по указанному индексу
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -30,9 +30,9 @@ void main()
 	FillRand(arr, n);
 	Print(arr, n);
 
-	int value = 0;//значение элемента
-	int i = 0;//индекс элемента
-	cout << "Введите добавляемое значение: "; cin >> value;
+	int value;//значение элемента
+	int index;//индекс вставляемого значения
+	/*cout << "Введите добавляемое значение: "; cin >> value;
 	arr = push_back(arr, n, value);
 	Print(arr, n);
 	cout << "Введите добавляемое значение: "; cin >> value;
@@ -43,7 +43,12 @@ void main()
 	Print(arr, n);
 	cout << "Убираем значение вначале массива: " << endl;
 	arr = pop_front(arr, n);
+	Print(arr, n);*/
+	cout << "Вставляем значение в массив: "; cin >> value;
+	cout << "Введите индекс вствляемого элемента: "; cin >> index;
+	arr = insert(arr, n, value, index);
 	Print(arr, n);
+
 
 	delete[] arr;
 #endif // DYNAMIC_MEMORY_1
@@ -165,15 +170,16 @@ int* pop_front(int arr[], int& n)
 	return buffer;
 }
 
-int* insert(int arr[], int& n, int value)
+int* insert(int arr[], int& n, int value, int index)
 {
 	int* buffer = new int[n + 1];
+	
 	for (int i = 0; i < n; i++)
 	{
-		buffer[i + 1] = arr[i];
+		buffer[i] = arr[i];
 	}
 	delete[] arr;
-	buffer[0] = value;
+	buffer[index] = value;
 	n++;
 	return buffer;
 }
