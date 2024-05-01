@@ -1,26 +1,38 @@
 ﻿#include<iostream>
 using namespace std;
 
+using std::cout;
+using std::cin;
+using std::endl;
+
 #define tab "\t"
 
+//#define DYNAMIC_MEMORY_1
+#define DYNAMIC_MEMORY_2
+
 void FillRand(int arr[], const int n);
+void FillRand(int** arr, const int rows, const int cols);
 void Print(int arr[], const int n);
+void Print(int** arr, const int rows, const int cols);
 int* push_back(int arr[], int &n, int value);//добавить значение в конец массива
 int* push_front(int arr[], int &n, int value);//добавить значение в начало массива
 int* pop_back(int arr[], int& n);//убрать значение в конце массива
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
+int* insert(int arr[], int &n, int value);//добавить значение по указанному индексу
 void main()
 {
 	setlocale(LC_ALL, "");
+#ifdef DYNAMIC_MEMORY_1
 	int n;
 	cout << "Введите размер массива: "; cin >> n;
 	int* arr = new int[n];
-	
+
 	FillRand(arr, n);
 	Print(arr, n);
 
-	int value;
-	/*cout << "Введите добавляемое значение: "; cin >> value;
+	int value = 0;//значение элемента
+	int i = 0;//индекс элемента
+	cout << "Введите добавляемое значение: "; cin >> value;
 	arr = push_back(arr, n, value);
 	Print(arr, n);
 	cout << "Введите добавляемое значение: "; cin >> value;
@@ -28,12 +40,38 @@ void main()
 	Print(arr, n);
 	cout << "Убираем значение вконце массива: " << endl;
 	arr = pop_back(arr, n);
-	Print(arr, n);*/
+	Print(arr, n);
 	cout << "Убираем значение вначале массива: " << endl;
 	arr = pop_front(arr, n);
 	Print(arr, n);
 
 	delete[] arr;
+#endif // DYNAMIC_MEMORY_1
+#ifdef DYNAMIC_MEMORY_2
+	int rows;
+	int cols;
+	cout << "Введите количество строк: "; cin >> rows;
+	cout << "Введите количество элементов строки: "; cin >> cols;
+	//1) Создаём массив указателей:
+	int** arr = new int*[rows];
+	//2) Выделяем память под строки:
+	for (int i = 0; i < rows; i++)
+	{
+		arr[i] = new int[cols] {};
+	}
+
+	FillRand(arr, rows, cols);
+	Print(arr, rows, cols);
+	
+	//3)Сначала удаляем строки:
+	for (int i = 0; i < rows; i++)
+	{
+		delete[] arr[i];
+	}
+	//4)Удаляем массив указателей:
+	delete[] arr;
+#endif // DYNAMIC_MEMORY_2
+
 }
 
 void FillRand(int arr[], const int n)
@@ -46,6 +84,17 @@ void FillRand(int arr[], const int n)
 	     }
 }
 
+void FillRand(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			arr[i][j] = rand() % 100;
+		}
+	}
+}
+
 void Print(int arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
@@ -53,6 +102,19 @@ void Print(int arr[], const int n)
 		//обращение к элементам массива через 
 		//оператор индексирования - []
 		cout << arr[i] << tab;
+	}
+	cout << endl;
+}
+
+void Print(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			cout << arr[i][j] << tab;
+		}
+		cout << endl;
 	}
 	cout << endl;
 }
@@ -100,5 +162,18 @@ int* pop_front(int arr[], int& n)
 	int* buffer = new int[--n];
 	for (int i = 0; i < n; i++)buffer[i] = arr[i+1];
 	delete[] arr;
+	return buffer;
+}
+
+int* insert(int arr[], int& n, int value)
+{
+	int* buffer = new int[n + 1];
+	for (int i = 0; i < n; i++)
+	{
+		buffer[i + 1] = arr[i];
+	}
+	delete[] arr;
+	buffer[0] = value;
+	n++;
 	return buffer;
 }
