@@ -46,14 +46,14 @@ void main()
 	cout << "Убираем значение вначале массива: " << endl;
 	arr = pop_front(arr, n);
 	Print(arr, n);*/
-	//cout << "Вставляем значение в массив: "; cin >> value;
-	//cout << "Введите индекс вствляемого элемента: "; cin >> index;
-	/*arr = insert(arr, n, value, index);
+	cout << "Вставляем значение в массив: "; cin >> value;
+	cout << "Введите индекс вствляемого элемента: "; cin >> index;
+	arr = insert(arr, n, value, index);
 	Print(arr, n);
-	cout << endl;*/
-	cout << "Введите индекс удаляемого элемента: "; cin >> index;
+	cout << endl;
+	/*cout << "Введите индекс удаляемого элемента: "; cin >> index;
 	arr = erase(arr, n, index);
-	Print(arr, n);
+	Print(arr, n);*/
 
 	delete[] arr;
 #endif // DYNAMIC_MEMORY_1
@@ -178,11 +178,9 @@ int* pop_front(int arr[], int& n)
 int* insert(int arr[], int &n, int value, int index)
 {
 	int* buffer = new int[n + 1]; 
-	
 	for (int i = n; i >= index; i--)
 	{
-	    buffer[i] = arr[i];
-		buffer[i+1] = buffer[i];
+		buffer[i+1] = arr[i];
 	}
 	for (int i = 0; i < index; i++)
 	{
