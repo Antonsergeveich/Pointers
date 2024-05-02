@@ -19,6 +19,7 @@ int* push_front(int arr[], int &n, int value);//добавить значени�
 int* pop_back(int arr[], int& n);//убрать значение в конце массива
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
 int* insert(int arr[], int &n, int value, int index);//добавить значение по указанному индексу
+int* erase(int arr[], int &n, int index);//удалить значение по указанному индексу
 
 void main()
 {
@@ -33,7 +34,7 @@ void main()
 
 	int value;//значение элемента
 	int index;//индекс вставляемого значения
-	cout << "Введите добавляемое значение: "; cin >> value;
+	/*cout << "Введите добавляемое значение: "; cin >> value;
 	arr = push_back(arr, n, value);
 	Print(arr, n);
 	cout << "Введите добавляемое значение: "; cin >> value;
@@ -44,12 +45,15 @@ void main()
 	Print(arr, n);
 	cout << "Убираем значение вначале массива: " << endl;
 	arr = pop_front(arr, n);
+	Print(arr, n);*/
+	//cout << "Вставляем значение в массив: "; cin >> value;
+	//cout << "Введите индекс вствляемого элемента: "; cin >> index;
+	/*arr = insert(arr, n, value, index);
 	Print(arr, n);
-	cout << "Вставляем значение в массив: "; cin >> value;
-	cout << "Введите индекс вствляемого элемента: "; cin >> index;
-	arr = insert(arr, n, value, index);
+	cout << endl;*/
+	cout << "Введите индекс удаляемого элемента: "; cin >> index;
+	arr = erase(arr, n, index);
 	Print(arr, n);
-
 
 	delete[] arr;
 #endif // DYNAMIC_MEMORY_1
@@ -189,4 +193,19 @@ int* insert(int arr[], int &n, int value, int index)
 	arr[index] = value;
 	n++; 
 	return arr;
+}
+
+int* erase(int arr[], int& n, int index)
+{
+	int* buffer = new int[--n];
+	for (int i = n; i > index; --i)
+	{
+	    buffer[i - 1] = arr[i];
+	}
+	for (int i = 0; i < index; i++)
+	{
+		buffer[i] = arr[i];
+	}
+    delete[] arr;
+	return buffer;
 }
