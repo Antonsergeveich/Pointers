@@ -32,7 +32,7 @@ void main()
 
 	int value;//значение элемента
 	int index;//индекс вставляемого значения
-	/*cout << "Введите добавляемое значение: "; cin >> value;
+	cout << "Введите добавляемое значение: "; cin >> value;
 	arr = push_back(arr, n, value);
 	Print(arr, n);
 	cout << "Введите добавляемое значение: "; cin >> value;
@@ -43,7 +43,7 @@ void main()
 	Print(arr, n);
 	cout << "Убираем значение вначале массива: " << endl;
 	arr = pop_front(arr, n);
-	Print(arr, n);*/
+	Print(arr, n);
 	cout << "Вставляем значение в массив: "; cin >> value;
 	cout << "Введите индекс вствляемого элемента: "; cin >> index;
 	arr = insert(arr, n, value, index);
@@ -170,16 +170,22 @@ int* pop_front(int arr[], int& n)
 	return buffer;
 }
 
-int* insert(int arr[], int& n, int value, int index)
+int* insert(int arr[], int &n, int value, int index)
 {
-	int* buffer = new int[n + 1];
-	
-	for (int i = 0; i < n; i++)
+	int* buffer = new int[n + 1]; 
+	int i;
+	for (i = n; i >= index; i--)
+	{
+		buffer[i] = arr[i];
+		buffer[i+1] = buffer[i];
+	}
+	for (int i = 0; i < index; i++)
 	{
 		buffer[i] = arr[i];
 	}
-	delete[] arr;
-	buffer[index] = value;
-	n++;
-	return buffer;
+	delete[] arr; 
+	arr = buffer;
+	arr[index] = value;
+	n++; 
+	return arr;
 }
