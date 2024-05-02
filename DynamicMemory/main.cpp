@@ -7,8 +7,8 @@ using std::endl;
 
 #define tab "\t"
 
-#define DYNAMIC_MEMORY_1
-//#define DYNAMIC_MEMORY_2
+//#define DYNAMIC_MEMORY_1
+#define DYNAMIC_MEMORY_2
 
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int rows, const int cols);
@@ -34,10 +34,10 @@ void main()
 
 	int value;//значение элемента
 	int index;//индекс вставляемого значения
-	/*cout << "Введите добавляемое значение: "; cin >> value;
+	cout << "Введите добавляемое значение вконец массива: "; cin >> value;
 	arr = push_back(arr, n, value);
 	Print(arr, n);
-	cout << "Введите добавляемое значение: "; cin >> value;
+	cout << "Введите добавляемое значение вначало массива: "; cin >> value;
 	arr = push_front(arr, n, value);
 	Print(arr, n);
 	cout << "Убираем значение вконце массива: " << endl;
@@ -45,15 +45,17 @@ void main()
 	Print(arr, n);
 	cout << "Убираем значение вначале массива: " << endl;
 	arr = pop_front(arr, n);
-	Print(arr, n);*/
-	cout << "Вставляем значение в массив: "; cin >> value;
-	cout << "Введите индекс вствляемого элемента: "; cin >> index;
+	Print(arr, n);
+	cout << endl;
+	cout << "Введите вставляемое значение в массив: "; cin >> value;
+	cout << endl;
+	cout << "Введите индекс вставляемого элемента: "; cin >> index;
 	arr = insert(arr, n, value, index);
 	Print(arr, n);
 	cout << endl;
-	/*cout << "Введите индекс удаляемого элемента: "; cin >> index;
+	cout << "Введите индекс удаляемого элемента: "; cin >> index;
 	arr = erase(arr, n, index);
-	Print(arr, n);*/
+	Print(arr, n);
 
 	delete[] arr;
 #endif // DYNAMIC_MEMORY_1
