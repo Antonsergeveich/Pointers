@@ -19,6 +19,7 @@ int* push_front(int arr[], int &n, int value);//добавить значени�
 int* pop_back(int arr[], int& n);//убрать значение в конце массива
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
 int* insert(int arr[], int &n, int value, int index);//добавить значение по указанному индексу
+
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -173,10 +174,10 @@ int* pop_front(int arr[], int& n)
 int* insert(int arr[], int &n, int value, int index)
 {
 	int* buffer = new int[n + 1]; 
-	int i;
-	for (i = n; i >= index; i--)
+	
+	for (int i = n; i >= index; i--)
 	{
-		buffer[i] = arr[i];
+	    buffer[i] = arr[i];
 		buffer[i+1] = buffer[i];
 	}
 	for (int i = 0; i < index; i++)
