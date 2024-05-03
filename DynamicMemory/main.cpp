@@ -7,8 +7,8 @@ using std::endl;
 
 #define tab "\t"
 
-//#define DYNAMIC_MEMORY_1
-#define DYNAMIC_MEMORY_2
+#define DYNAMIC_MEMORY_1
+//#define DYNAMIC_MEMORY_2
 
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int rows, const int cols);
@@ -83,7 +83,6 @@ void main()
 	//4)Удаляем массив указателей:
 	delete[] arr;
 #endif // DYNAMIC_MEMORY_2
-
 }
 
 void FillRand(int arr[], const int n)
@@ -207,5 +206,6 @@ int* erase(int arr[], int& n, int index)
 		buffer[i] = arr[i];
 	}
     delete[] arr;
-	return buffer;
+	arr = buffer;
+	return arr;
 }
