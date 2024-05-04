@@ -18,8 +18,8 @@ int* push_back(int arr[], int &n, int value);//добавить значение
 int* push_front(int arr[], int &n, int value);//добавить значение в начало массива
 int* pop_back(int arr[], int& n);//убрать значение в конце массива
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
-int* insert(int arr[], int &n, int value, int index);//добавить значение по указанному индексу
-int* erase(int arr[], int &n, int index);//удалить значение по указанному индексу
+int* insert(int arr[], int &n, int value, int &index);//добавить значение по указанному индексу
+int* erase(int arr[], int &n, int &index);//удалить значение по указанному индексу
 
 void main()
 {
@@ -34,7 +34,7 @@ void main()
 
 	int value;//значение элемента
 	int index;//индекс вставляемого значения
-	/*cout << "Введите добавляемое значение в конец массива: "; cin >> value;
+	cout << "Введите добавляемое значение в конец массива: "; cin >> value;
 	arr = push_back(arr, n, value);
 	Print(arr, n);
 	cout << "Введите добавляемое значение в начало массива: "; cin >> value;
@@ -46,7 +46,7 @@ void main()
 	cout << "Убираем значение в начале массива: " << endl;
 	arr = pop_front(arr, n);
 	Print(arr, n);
-	cout << endl;*/
+	cout << endl;
 	cout << "Введите вставляемое значение в массив: "; cin >> value;
 	cout << endl;
 	cout << "Введите индекс вставляемого элемента: "; cin >> index;
@@ -176,7 +176,7 @@ int* pop_front(int arr[], int& n)
 	return buffer;
 }
 
-int* insert(int arr[], int &n, int value, int index)
+int* insert(int arr[], int &n, int value, int &index)
 {
 	while (index >= n)
 	{
@@ -199,7 +199,7 @@ int* insert(int arr[], int &n, int value, int index)
 	return arr;
 }
 
-int* erase(int arr[], int& n, int index)
+int* erase(int arr[], int& n, int &index)
 {
 	while (index >= n)
 	{
