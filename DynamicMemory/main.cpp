@@ -34,19 +34,19 @@ void main()
 
 	int value;//значение элемента
 	int index;//индекс вставляемого значения
-	cout << "Введите добавляемое значение вконец массива: "; cin >> value;
+	/*cout << "Введите добавляемое значение в конец массива: "; cin >> value;
 	arr = push_back(arr, n, value);
 	Print(arr, n);
-	cout << "Введите добавляемое значение вначало массива: "; cin >> value;
+	cout << "Введите добавляемое значение в начало массива: "; cin >> value;
 	arr = push_front(arr, n, value);
 	Print(arr, n);
-	cout << "Убираем значение вконце массива: " << endl;
+	cout << "Убираем значение в конце массива: " << endl;
 	arr = pop_back(arr, n);
 	Print(arr, n);
-	cout << "Убираем значение вначале массива: " << endl;
+	cout << "Убираем значение в начале массива: " << endl;
 	arr = pop_front(arr, n);
 	Print(arr, n);
-	cout << endl;
+	cout << endl;*/
 	cout << "Введите вставляемое значение в массив: "; cin >> value;
 	cout << endl;
 	cout << "Введите индекс вставляемого элемента: "; cin >> index;
@@ -178,6 +178,11 @@ int* pop_front(int arr[], int& n)
 
 int* insert(int arr[], int &n, int value, int index)
 {
+	while (index >= n)
+	{
+		cout << "WARNING!!! Index: " << index << " Error " << endl;
+		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
+	} 
 	int* buffer = new int[n + 1]; 
 	for (int i = n; i >= index; i--)
 	{
@@ -196,6 +201,11 @@ int* insert(int arr[], int &n, int value, int index)
 
 int* erase(int arr[], int& n, int index)
 {
+	while (index >= n)
+	{
+		cout << "WARNING!!! Index: " << index << " Error " << endl;
+		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
+	}
 	int* buffer = new int[--n];
 	for (int i = n; i > index; --i)
 	{
