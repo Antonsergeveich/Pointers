@@ -11,7 +11,7 @@ using std::endl;
 #define DYNAMIC_MEMORY_2
 
 int** Allocate(int rows, int cols);
-void Clear(int** arr[], int rows);
+void Clear(int* arr[], int rows);
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int rows, const int cols);
 void Print(int arr[], const int n);
@@ -76,7 +76,7 @@ void main()
 	int** arr = Allocate(rows, cols);
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
-	Clear(&arr, rows);
+	Clear(arr, rows);
 	////3)Сначала удаляем строки:
 	//for (int i = 0; i < rows; i++)
 	//{
@@ -232,7 +232,7 @@ int** Allocate(int rows, int cols)
 	return arr;
 }
 
-void Clear(int** arr[], int rows)
+void Clear(int* arr[], int rows)
 {
 	for (int i = 0; i < rows; i++)
 	{
