@@ -7,9 +7,11 @@ using std::endl;
 
 #define tab "\t"
 
-#define DYNAMIC_MEMORY_1
-//#define DYNAMIC_MEMORY_2
+//#define DYNAMIC_MEMORY_1
+#define DYNAMIC_MEMORY_2
 
+int** Allocate(int rows, int cols);
+void Clear(int** arr[], int rows);
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int rows, const int cols);
 void Print(int arr[], const int n);
@@ -20,7 +22,6 @@ int* pop_back(int arr[], int& n);//убрать значение в конце �
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
 int* insert(int arr[], int &n, int value, int &index);//добавить значение по указанному индексу
 int* erase(int arr[], int &n, int &index);//удалить значение по указанному индексу
-
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -64,24 +65,25 @@ void main()
 	int cols;
 	cout << "Введите количество строк: "; cin >> rows;
 	cout << "Введите количество элементов строки: "; cin >> cols;
-	//1) Создаём массив указателей:
-	int** arr = new int*[rows];
-	//2) Выделяем память под строки:
-	for (int i = 0; i < rows; i++)
-	{
-		arr[i] = new int[cols] {};
-	}
-
+	////1) Создаём массив указателей:
+	//int** arr = new int*[rows];
+	////2) Выделяем память под строки:
+	//for (int i = 0; i < rows; i++)
+	//{
+	//	arr[i] = new int[cols] {};
+	//}
+	
+	int** arr = Allocate(rows, cols);
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
-	
-	//3)Сначала удаляем строки:
-	for (int i = 0; i < rows; i++)
-	{
-		delete[] arr[i];
-	}
-	//4)Удаляем массив указателей:
-	delete[] arr;
+	Clear(&arr, rows);
+	////3)Сначала удаляем строки:
+	//for (int i = 0; i < rows; i++)
+	//{
+	//	delete[] arr[i];
+	//}
+	////4)Удаляем массив указателей:
+	//delete[] arr;
 #endif // DYNAMIC_MEMORY_2
 }
 
@@ -218,4 +220,23 @@ int* erase(int arr[], int& n, int &index)
     delete[] arr;
 	arr = buffer;
 	return arr;
+}
+
+int** Allocate(int rows, int cols)
+{
+	int** arr = new int* [rows];
+	for (int i = 0; i < rows; i++)
+	{
+		arr[i] = new int[cols] {};
+	}
+	return arr;
+}
+
+void Clear(int** arr[], int rows)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		delete[] arr[i];
+	}
+	delete[] arr;
 }
