@@ -10,10 +10,10 @@ using std::endl;
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
 
-int** Allocate(int rows, int cols);//выделение памяти под двумерный динамический массив
-void Clear(int* arr[], int rows);//удаление двумерного динамического массива из памяти
-int** push_row_front(int* arr[], int &rows, int cols);
-void FillRand(int arr[], const int n);
+int** Allocate( const int rows, const int cols);//выделение памяти под двумерный динамический массив
+void Clear(int** arr, const int rows);//удаление двумерного динамического массива из памяти
+int** push_row_front(int** arr, int &rows, int cols);
+void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
 void FillRand(int** arr, const int rows, const int cols);
 void Print(int arr[], const int n);
 void Print(int** arr, const int rows, const int cols);
@@ -23,6 +23,7 @@ int* pop_back(int arr[], int& n);//убрать значение в конце �
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
 int* insert(int arr[], int &n, int value, int &index);//добавить значение по указанному индексу
 int* erase(int arr[], int &n, int &index);//удалить значение по указанному индексу
+int** push_row_back(int** arr, int &rows, const int cols);
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -77,8 +78,11 @@ void main()
 	int** arr = Allocate(rows, cols);
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
-	arr = push_row_front(arr, rows, cols);
+	/*arr = push_row_front(arr, rows, cols);
 	FillRand(arr, rows, cols);
+	Print(arr, rows, cols);*/
+	arr = push_row_back(arr, rows, cols);
+	FillRand(arr[rows - 1], cols, 100, 1000);
 	Print(arr, rows, cols);
 	Clear(arr, rows);
 	
@@ -91,14 +95,15 @@ void main()
 	//delete[] arr;
 #endif // DYNAMIC_MEMORY_2
 }
-
-void FillRand(int arr[], const int n)
+//Stack - это модель памяти, из которой последний записанный элемент считывается первым.
+//push - вставить //pop - вытащить
+void FillRand(int arr[], const int n, int minRand, int maxRand)
 {
 	     for (int i = 0; i < n; i++)
 	     {
 		//Обращение к элементам массива через арифметику указателей
 		//и оператор разъименования
-		   *(arr + i) = rand() % 100;
+			 *(arr + i) = rand() % (maxRand - minRand) + minRand;
 	     }
 }
 
@@ -227,7 +232,27 @@ int* erase(int arr[], int& n, int &index)
 	return arr;
 }
 
-int** Allocate(int rows, int cols)
+int** push_row_back(int** arr, int &rows, const int cols)
+{
+	//1)Создаём буферный массив указателей нужного размера:
+	int** buffer = new int* [rows + 1];
+
+	//2)Копируем строки из исходного массива в массив указателей:
+	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
+
+	//3)Удаляем исходный массив указателей:
+	delete[] arr;
+
+	//4)Создаём строку и добавляем её в массив:
+	buffer[rows] = new int[cols] {};
+
+	//5)После добавления строки в массив, количество его строк увеличивается:
+	rows++;
+
+	return buffer;
+}
+
+int** Allocate(const int rows, const int cols)
 {
 	int** arr = new int* [rows];
 	for (int i = 0; i < rows; i++)
@@ -237,7 +262,7 @@ int** Allocate(int rows, int cols)
 	return arr;
 }
 
-void Clear(int* arr[], int rows)
+void Clear(int** arr, const int rows)
 {
 	for (int i = 0; i < rows; i++)
 	{
@@ -246,7 +271,7 @@ void Clear(int* arr[], int rows)
 	delete[] arr;
 }
 
-int** push_row_front(int* arr[], int &rows, int cols)
+int** push_row_front(int** arr, int &rows, int cols)
 {
 	int** buffer = new int* [++rows];
 	for (int i = 0; i < rows; i++)
