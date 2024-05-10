@@ -10,8 +10,9 @@ using std::endl;
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
 
-int** Allocate(int rows, int cols);
-void Clear(int* arr[], int rows);
+int** Allocate(int rows, int cols);//выделение памяти под двумерный динамический массив
+void Clear(int* arr[], int rows);//удаление двумерного динамического массива из памяти
+int** push_row_front(int* arr[], int &rows, int cols);
 void FillRand(int arr[], const int n);
 void FillRand(int** arr, const int rows, const int cols);
 void Print(int arr[], const int n);
@@ -72,11 +73,15 @@ void main()
 	//{
 	//	arr[i] = new int[cols] {};
 	//}
-	
+
 	int** arr = Allocate(rows, cols);
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
+	arr = push_row_front(arr, rows, cols);
+	FillRand(arr, rows, cols);
+	Print(arr, rows, cols);
 	Clear(arr, rows);
+	
 	////3)Сначала удаляем строки:
 	//for (int i = 0; i < rows; i++)
 	//{
@@ -239,4 +244,21 @@ void Clear(int* arr[], int rows)
 		delete[] arr[i];
 	}
 	delete[] arr;
+}
+
+int** push_row_front(int* arr[], int &rows, int cols)
+{
+	int** buffer = new int* [++rows];
+	for (int i = 0; i < rows; i++)
+	{
+	   buffer[i] = new int[cols];
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	arr = buffer;
+	Clear(buffer, rows);
+	rows++;
+	return arr;
 }
