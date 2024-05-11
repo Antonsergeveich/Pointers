@@ -12,9 +12,8 @@ using std::endl;
 
 int** Allocate( const int rows, const int cols);//выделение памяти под двумерный динамический массив
 void Clear(int** arr, const int rows);//удаление двумерного динамического массива из памяти
-int** push_row_front(int** arr, int &rows, int cols);
-void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
-void FillRand(int** arr, const int rows, const int cols);
+void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);//одномерный
+void FillRand(int** arr, const int rows, const int cols);//двумерный
 void Print(int arr[], const int n);
 void Print(int** arr, const int rows, const int cols);
 int* push_back(int arr[], int &n, int value);//добавить значение в конец массива
@@ -23,7 +22,9 @@ int* pop_back(int arr[], int& n);//убрать значение в конце �
 int* pop_front(int arr[], int& n);//убрать значение в конце массива
 int* insert(int arr[], int &n, int value, int &index);//добавить значение по указанному индексу
 int* erase(int arr[], int &n, int &index);//удалить значение по указанному индексу
-int** push_row_back(int** arr, int &rows, const int cols);
+int** push_row_front(int** arr, int &rows, const int cols);//добавляет строку в начало массива
+int** push_row_back(int** arr, int &rows, const int cols);//добавляет строку в конец массива
+int** insert_row(int** arr, int& rows, const int cols, int &index); //вставляет строку в массив по указанному индексу
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -65,34 +66,28 @@ void main()
 #ifdef DYNAMIC_MEMORY_2
 	int rows;
 	int cols;
+	int index;
 	cout << "Введите количество строк: "; cin >> rows;
 	cout << "Введите количество элементов строки: "; cin >> cols;
-	////1) Создаём массив указателей:
-	//int** arr = new int*[rows];
-	////2) Выделяем память под строки:
-	//for (int i = 0; i < rows; i++)
-	//{
-	//	arr[i] = new int[cols] {};
-	//}
-
+	
 	int** arr = Allocate(rows, cols);
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
+
 	/*arr = push_row_front(arr, rows, cols);
-	FillRand(arr, rows, cols);
-	Print(arr, rows, cols);*/
+	FillRand(arr[0], cols);
+	Print(arr, rows, cols);
+
 	arr = push_row_back(arr, rows, cols);
 	FillRand(arr[rows - 1], cols, 100, 1000);
 	Print(arr, rows, cols);
+
+	cout << "Введите индекс вставляемой строки: "; cin >> index;
+	arr = insert_row(arr, rows, cols, index);
+	FillRand(arr[index], cols);
+	Print(arr, rows, cols);*/
+
 	Clear(arr, rows);
-	
-	////3)Сначала удаляем строки:
-	//for (int i = 0; i < rows; i++)
-	//{
-	//	delete[] arr[i];
-	//}
-	////4)Удаляем массив указателей:
-	//delete[] arr;
 #endif // DYNAMIC_MEMORY_2
 }
 //Stack - это модель памяти, из которой последний записанный элемент считывается первым.
@@ -252,9 +247,34 @@ int** push_row_back(int** arr, int &rows, const int cols)
 	return buffer;
 }
 
+int** insert_row(int** arr, int& rows, const int cols, int &index)
+{
+	while (index >= rows)
+	{
+		cout << "WARNING!!! Index: " << index << " Error " << endl;
+		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
+	}
+	int** buffer = new int* [rows + 1];
+	for (int i = rows; i >= index; i--)
+	{
+		buffer[i + 1] = arr[i];
+	}
+	for (int i = 0; i < index; i++)
+	{
+		buffer[i] = arr[i];
+	}
+	delete[] arr;
+	buffer[index] = new int[cols] {};
+	rows++;
+	return buffer;
+}
+
 int** Allocate(const int rows, const int cols)
 {
+	//1) Создаём массив указателей :
 	int** arr = new int* [rows];
+	
+	//2) Выделяем память под строки:
 	for (int i = 0; i < rows; i++)
 	{
 		arr[i] = new int[cols] {};
@@ -264,26 +284,26 @@ int** Allocate(const int rows, const int cols)
 
 void Clear(int** arr, const int rows)
 {
+	//3)Сначала удаляем строки:
 	for (int i = 0; i < rows; i++)
 	{
 		delete[] arr[i];
 	}
+	//4)Удаляем массив указателей:
 	delete[] arr;
 }
 
-int** push_row_front(int** arr, int &rows, int cols)
+int** push_row_front(int** arr, int &rows, const int cols)
 {
-	int** buffer = new int* [++rows];
-	for (int i = 0; i < rows; i++)
-	{
-	   buffer[i] = new int[cols];
-	}
-	for (int i = 0; i < rows; i++)
-	{
-		buffer[i] = arr[i];
-	}
-	arr = buffer;
-	Clear(buffer, rows);
+	int** buffer = new int* [rows + 1];
+	
+	for (int i = 0; i < rows; i++)buffer[i+1] = arr[i];
+	
+	delete arr;
+
+	buffer[0] = new int[cols] {};
+
 	rows++;
-	return arr;
+	
+	return buffer;
 }
