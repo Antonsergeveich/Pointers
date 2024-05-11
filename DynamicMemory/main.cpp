@@ -24,7 +24,9 @@ int* insert(int arr[], int &n, int value, int &index);//добавить зна�
 int* erase(int arr[], int &n, int &index);//удалить значение по указанному индексу
 int** push_row_front(int** arr, int &rows, const int cols);//добавляет строку в начало массива
 int** push_row_back(int** arr, int &rows, const int cols);//добавляет строку в конец массива
-int** pop_row_back(int** arr, int& rows, const int cols);//удаляет последнюю строку из массива
+int** pop_row_back(int** arr, int& rows);//удаляет последнюю строку из массива
+int** pop_row_front(int** arr, int& rows);//удаляет нулевую строку из массива
+int** erase_row(int** arr, int& rows, int& index);//удаляет строку из массива по заданному индексу
 int** insert_row(int** arr, int& rows, const int cols, int& index); //вставляет строку в массив по указанному индексу
 void main()
 {
@@ -75,7 +77,7 @@ void main()
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 
-	/*arr = push_row_front(arr, rows, cols);
+	arr = push_row_front(arr, rows, cols);
 	FillRand(arr[0], cols);
 	Print(arr, rows, cols);
 
@@ -86,9 +88,16 @@ void main()
 	cout << "Введите индекс вставляемой строки: "; cin >> index;
 	arr = insert_row(arr, rows, cols, index);
 	FillRand(arr[index], cols);
-	Print(arr, rows, cols);*/
+	Print(arr, rows, cols);
 
-	arr = pop_row_back(arr, rows, cols);
+	arr = pop_row_back(arr, rows);
+	Print(arr, rows, cols);
+	system("pause");
+	arr = pop_row_front(arr, rows);
+	Print(arr, rows, cols);
+
+	cout << "Введите индекс удаляемой строки: "; cin >> index;
+	arr = erase_row(arr, rows, index);
 	Print(arr, rows, cols);
 
 	Clear(arr, rows);
@@ -266,11 +275,41 @@ int** push_row_back(int** arr, int &rows, const int cols)
 	return buffer;
 }
 
-int** pop_row_back(int** arr, int& rows, const int cols)
+int** pop_row_back(int** arr, int& rows)
 {
 	rows--;
 	int** buffer = new int* [rows];
 	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
+	delete[] arr;
+	return buffer;
+}
+
+int** pop_row_front(int** arr, int& rows)
+{
+	rows--;
+	int** buffer = new int* [rows];
+	for (int i = 0; i < rows; i++) buffer[i] = arr[i+1];
+	delete[] arr;
+	return buffer;
+}
+
+int** erase_row(int** arr, int& rows, int& index)
+{
+	while (index >= rows)
+	{
+		cout << "WARNING!!! Index: " << index << " Error " << endl;
+		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
+	}
+	rows--;
+	int** buffer = new int* [rows];
+	for (int i = rows; i > index; --i)
+	{
+		buffer[i - 1] = arr[i];
+	}
+	for (int i = 0; i < index; i++)
+	{
+		buffer[i] = arr[i];
+	}
 	delete[] arr;
 	return buffer;
 }
