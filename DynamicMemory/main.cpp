@@ -80,7 +80,7 @@ void main()
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 
-	/*arr = push_row_front(arr, rows, cols);
+	arr = push_row_front(arr, rows, cols);
 	FillRand(arr[0], cols);
 	Print(arr, rows, cols);
 
@@ -91,27 +91,27 @@ void main()
 	cout << "Введите индекс вставляемой строки: "; cin >> index;
 	arr = insert_row(arr, rows, cols, index);
 	FillRand(arr[index], cols);
-	Print(arr, rows, cols);*/
+	Print(arr, rows, cols);
 
-	/*arr = pop_row_back(arr, rows);
-	Print(arr, rows, cols);*/
+	cout << "Введите индекс удаляемой строки: "; cin >> index;
+	arr = erase_row(arr, rows, index);
+	Print(arr, rows, cols);
 
-	/*push_col_back(arr, rows, cols);
+	arr = pop_row_back(arr, rows);
+	Print(arr, rows, cols);
+	
+	arr = pop_row_front(arr, rows);
+	Print(arr, rows, cols);
+
+	push_col_back(arr, rows, cols);
 	Print(arr, rows, cols);
 	
 	push_col_front(arr, rows, cols);
-	Print(arr, rows, cols);*/
+	Print(arr, rows, cols);
 
 	cout << "Введите индекс вставляемого столбца: "; cin >> index;
 	insert_col(arr, rows, cols, index);
 	Print(arr, rows, cols);
-
-	/*arr = pop_row_front(arr, rows);
-	Print(arr, rows, cols);*/
-
-	/*cout << "Введите индекс удаляемой строки: "; cin >> index;
-	arr = erase_row(arr, rows, index);
-	Print(arr, rows, cols);*/
 
 	Clear(arr, rows);
 #endif // DYNAMIC_MEMORY_2
@@ -290,9 +290,9 @@ int** pop_row_back(int** arr, int& rows)
 
 int** pop_row_front(int** arr, int& rows)
 {
-	int** buffer = new int* [--rows];
+	int** buffer = new int* [--rows] ;
 	for (int i = 0; i < rows; i++) buffer[i] = arr[i+1];
-	delete[] arr[rows];
+	delete[] arr[0];
 	delete[] arr;
 	return buffer;
 }
