@@ -28,6 +28,7 @@ int** pop_row_back(int** arr, int& rows);//удаляет последнюю с�
 int** pop_row_front(int** arr, int& rows);//удаляет нулевую строку из массива
 int** erase_row(int** arr, int& rows, int& index);//удаляет строку из массива по заданному индексу
 int** insert_row(int** arr, int& rows, const int cols, int& index); //вставляет строку в массив по указанному индексу
+void push_col_back(int** arr, const int rows, int& cols);
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -77,7 +78,7 @@ void main()
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 
-	arr = push_row_front(arr, rows, cols);
+	/*arr = push_row_front(arr, rows, cols);
 	FillRand(arr[0], cols);
 	Print(arr, rows, cols);
 
@@ -88,17 +89,20 @@ void main()
 	cout << "Введите индекс вставляемой строки: "; cin >> index;
 	arr = insert_row(arr, rows, cols, index);
 	FillRand(arr[index], cols);
-	Print(arr, rows, cols);
+	Print(arr, rows, cols);*/
 
-	arr = pop_row_back(arr, rows);
-	Print(arr, rows, cols);
-	system("pause");
-	arr = pop_row_front(arr, rows);
-	Print(arr, rows, cols);
+	/*arr = pop_row_back(arr, rows);
+	Print(arr, rows, cols);*/
 
-	cout << "Введите индекс удаляемой строки: "; cin >> index;
+	push_col_back(arr, rows, cols);
+	Print(arr, rows, cols);
+	
+	/*arr = pop_row_front(arr, rows);
+	Print(arr, rows, cols);*/
+
+	/*cout << "Введите индекс удаляемой строки: "; cin >> index;
 	arr = erase_row(arr, rows, index);
-	Print(arr, rows, cols);
+	Print(arr, rows, cols);*/
 
 	Clear(arr, rows);
 #endif // DYNAMIC_MEMORY_2
@@ -198,11 +202,6 @@ int* pop_front(int arr[], int& n)
 
 int* insert(int arr[], int &n, int value, int &index)
 {
-	while (index >= n)
-	{
-		cout << "WARNING!!! Index: " << index << " Error " << endl;
-		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
-	} 
 	int* buffer = new int[n + 1]; 
 	for (int i = n; i >= index; i--)
 	{
@@ -221,11 +220,6 @@ int* insert(int arr[], int &n, int value, int &index)
 
 int* erase(int arr[], int& n, int &index)
 {
-	while (index >= n)
-	{
-		cout << "WARNING!!! Index: " << index << " Error " << endl;
-		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
-	}
 	int* buffer = new int[--n];
 	for (int i = n; i > index; --i)
 	{
@@ -277,29 +271,25 @@ int** push_row_back(int** arr, int &rows, const int cols)
 
 int** pop_row_back(int** arr, int& rows)
 {
-	rows--;
-	int** buffer = new int* [rows];
+	// переопределяем массив указателей
+	int** buffer = new int* [--rows];
 	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
+	delete[] arr[rows]; //удаляем удаляемую строку из памяти
 	delete[] arr;
 	return buffer;
 }
 
 int** pop_row_front(int** arr, int& rows)
 {
-	rows--;
-	int** buffer = new int* [rows];
+	int** buffer = new int* [--rows];
 	for (int i = 0; i < rows; i++) buffer[i] = arr[i+1];
+	delete[] arr[rows];
 	delete[] arr;
 	return buffer;
 }
 
 int** erase_row(int** arr, int& rows, int& index)
 {
-	while (index >= rows)
-	{
-		cout << "WARNING!!! Index: " << index << " Error " << endl;
-		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
-	}
 	rows--;
 	int** buffer = new int* [rows];
 	for (int i = rows; i > index; --i)
@@ -316,11 +306,6 @@ int** erase_row(int** arr, int& rows, int& index)
 
 int** insert_row(int** arr, int& rows, const int cols, int &index)
 {
-	while (index >= rows)
-	{
-		cout << "WARNING!!! Index: " << index << " Error " << endl;
-		cout << "Введите новый индекс вставляемого значения: "; cin >> index;
-	}
 	int** buffer = new int* [rows + 1];
 	for (int i = rows; i >= index; i--)
 	{
@@ -334,6 +319,22 @@ int** insert_row(int** arr, int& rows, const int cols, int &index)
 	buffer[index] = new int[cols] {};
 	rows++;
 	return buffer;
+}
+
+void push_col_back(int** arr, const int rows, int& cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		//1) Создаём буферную строку
+		int* buffer = new int[cols + 1] {};
+		//2) Копируем значения из исходной строки в буферную
+		for (int j = 0; j < cols; j++)buffer[j] = arr[i][j];
+		//3) Удаляем исходную строку
+		delete[] arr[i];
+		//4) Подменяем адрес строки в массиве указателей
+		arr[i] = buffer;
+	}
+		cols++;
 }
 
 
