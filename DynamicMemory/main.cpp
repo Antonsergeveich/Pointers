@@ -28,7 +28,9 @@ int** pop_row_back(int** arr, int& rows);//удаляет последнюю с�
 int** pop_row_front(int** arr, int& rows);//удаляет нулевую строку из массива
 int** erase_row(int** arr, int& rows, int& index);//удаляет строку из массива по заданному индексу
 int** insert_row(int** arr, int& rows, const int cols, int& index); //вставляет строку в массив по указанному индексу
-void push_col_back(int** arr, const int rows, int& cols);
+void push_col_back(int** arr, const int rows, int& cols);//добавляет столбец в конец массива
+void push_col_front(int** arr, const int rows, int& cols);//добавляет столбец в начало массива
+void insert_col(int** arr, const int rows, int& cols, int index);//вставляет столбец в массив по указанному индексу
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -94,9 +96,16 @@ void main()
 	/*arr = pop_row_back(arr, rows);
 	Print(arr, rows, cols);*/
 
-	push_col_back(arr, rows, cols);
+	/*push_col_back(arr, rows, cols);
 	Print(arr, rows, cols);
 	
+	push_col_front(arr, rows, cols);
+	Print(arr, rows, cols);*/
+
+	cout << "Введите индекс вставляемого столбца: "; cin >> index;
+	insert_col(arr, rows, cols, index);
+	Print(arr, rows, cols);
+
 	/*arr = pop_row_front(arr, rows);
 	Print(arr, rows, cols);*/
 
@@ -335,6 +344,38 @@ void push_col_back(int** arr, const int rows, int& cols)
 		arr[i] = buffer;
 	}
 		cols++;
+}
+
+void push_col_front(int** arr, const int rows, int& cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		int* buffer = new int[cols + 1] {};
+		for (int j = 0; j < cols; j++)buffer[j+1] = arr[i][j];
+		delete[] arr[i];
+		arr[i] = buffer;
+	}
+	cols++;
+}
+
+void insert_col(int** arr, const int rows, int& cols, int index)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		int* buffer = new int[cols + 1] {};
+
+		for (int j = 0; j < index; j++)
+		{
+			buffer[j] = arr[i][j];
+		}
+		for (int j = cols; j >= index; j--)
+		{
+			buffer[j+1] = arr[i][j];
+		}
+		delete[] arr[i];
+		arr[i] = buffer;
+	}
+	cols++;
 }
 
 
