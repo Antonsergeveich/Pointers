@@ -1,9 +1,9 @@
-int** Allocate(const int rows, const int cols)
+п»їint** Allocate(const int rows, const int cols)
 {
-	//1) Создаём массив указателей :
+	//1) РЎРѕР·РґР°С‘Рј РјР°СЃСЃРёРІ СѓРєР°Р·Р°С‚РµР»РµР№ :
 	int** arr = new int* [rows];
 
-	//2) Выделяем память под строки:
+	//2) Р’С‹РґРµР»СЏРµРј РїР°РјСЏС‚СЊ РїРѕРґ СЃС‚СЂРѕРєРё:
 	for (int i = 0; i < rows; i++)
 	{
 		arr[i] = new int[cols] {};
