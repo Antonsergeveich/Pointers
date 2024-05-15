@@ -1,0 +1,5 @@
+﻿Build started at 14:40...
+1>------ Build started: Project: DynamicMemory, Configuration: Debug Win32 ------
+1>DynamicMemory.vcxproj -> C:\Users\Pro\source\repos\Pointers\Debug\DynamicMemory.exe
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+========== Build completed at 14:40 and took 00,311 seconds ==========
