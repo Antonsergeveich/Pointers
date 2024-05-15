@@ -1,12 +1,12 @@
-#include"stdafx.h"
+ï»¿#include"stdafx.h"
 #include"Constants.h"
 template<typename T>
 void Print(T arr[], const int n)
 {
 	for (int i = 0; i < n; i++)
 	{
-		//îáðàùåíèå ê ýëåìåíòàì ìàññèâà ÷åðåç 
-		//îïåðàòîð èíäåêñèðîâàíèÿ - []
+		//Ð¾Ð±Ñ€Ð°Ñ‰ÐµÐ½Ð¸Ðµ Ðº ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼ Ð¼Ð°ÑÑÐ¸Ð²Ð° Ñ‡ÐµÑ€ÐµÐ· 
+		//Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ð¸Ð½Ð´ÐµÐºÑÐ¸Ñ€Ð¾Ð²Ð°Ð½Ð¸Ñ - []
 		cout << arr[i] << tab;
 	}
 	cout << endl;
