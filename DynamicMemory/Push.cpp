@@ -1,7 +1,7 @@
 ﻿template<typename T>
 T* push_back(T arr[], int& n, T value)
 {
-	int* buffer = new int[n + 1]; //1)Создаём буферный массив нужного размера:
+	T* buffer = new int[n + 1]; //1)Создаём буферный массив нужного размера:
 	for (int i = 0; i < n; i++) //2)Копируем значения из исходного массива в буферный:
 	{
 		buffer[i] = arr[i];
@@ -19,7 +19,7 @@ T* push_back(T arr[], int& n, T value)
 template<typename T>
 T* push_front(T arr[], int& n, T value)
 {
-	int* buffer = new int[n + 1];
+	T* buffer = new int[n + 1];
 	for (int i = 0; i < n; i++)
 	{
 		buffer[i + 1] = arr[i];
@@ -33,7 +33,7 @@ T* push_front(T arr[], int& n, T value)
 template<typename T>
 T* insert(T arr[], int& n, T value, int& index)
 {
-	int* buffer = new int[n + 1];
+	T* buffer = new int[n + 1];
 	for (int i = n; i >= index; i--)
 	{
 		buffer[i + 1] = arr[i];
@@ -52,7 +52,7 @@ T* insert(T arr[], int& n, T value, int& index)
 template<typename T>
 T** push_row_front(T** arr, int& rows, const int cols)
 {
-	int** buffer = new int* [rows + 1];
+	T** buffer = new int* [rows + 1];
 
 	for (int i = 0; i < rows; i++)buffer[i + 1] = arr[i];
 
@@ -69,7 +69,7 @@ template<typename T>
 T** push_row_back(T** arr, int& rows, const int cols)
 {
 	//1)Создаём буферный массив указателей нужного размера:
-	int** buffer = new int* [rows + 1];
+	T** buffer = new int* [rows + 1];
 
 	//2)Копируем строки из исходного массива в массив указателей:
 	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
@@ -89,7 +89,7 @@ T** push_row_back(T** arr, int& rows, const int cols)
 template<typename T>
 T** insert_row(T** arr, int& rows, const int cols, int& index)
 {
-	int** buffer = new int* [rows + 1];
+	T** buffer = new int* [rows + 1];
 	for (int i = rows; i >= index; i--)
 	{
 		buffer[i + 1] = arr[i];
@@ -110,7 +110,7 @@ void push_col_back(T** arr, const int rows, int& cols)
 	for (int i = 0; i < rows; i++)
 	{
 		//1) Создаём буферную строку
-		int* buffer = new int[cols + 1] {};
+		T* buffer = new int[cols + 1] {};
 		//2) Копируем значения из исходной строки в буферную
 		for (int j = 0; j < cols; j++)buffer[j] = arr[i][j];
 		//3) Удаляем исходную строку
@@ -126,7 +126,7 @@ void push_col_front(T** arr, const int rows, int& cols)
 {
 	for (int i = 0; i < rows; i++)
 	{
-		int* buffer = new int[cols + 1] {};
+		T* buffer = new int[cols + 1] {};
 		for (int j = 0; j < cols; j++)buffer[j + 1] = arr[i][j];
 		delete[] arr[i];
 		arr[i] = buffer;
@@ -139,7 +139,7 @@ void insert_col(T** arr, const int rows, int& cols, const int index)
 {
 	for (int i = 0; i < rows; i++)
 	{
-		int* buffer = new int[cols + 1] {};
+		T* buffer = new int[cols + 1] {};
 
 		for (int j = 0; j < index; j++)
 		{
