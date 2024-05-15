@@ -1,16 +1,18 @@
 ﻿#include"stdafx.h"
-#include"Allocate.h"
-#include"Allocate.cpp"
 #include"Clear.h"
 #include"Clear.cpp"
-#include"FillRand.h"
-#include"FillRand.cpp"
 #include"Print.h"
 #include"Print.cpp"
 #include"Push.h"
 #include"Push.cpp"
 #include"Pop.h"
 #include"Pop.cpp"
+
+int** Allocate(const int rows, const int cols);
+void FillRand(int arr[], const int n, int minRand = 0, int maxRand = 100);
+void FillRand(double arr[], const int n, int minRand = 0, int maxRand = 100);
+void FillRand(char arr[], const int n);
+void FillRand(int** arr, const int rows, const int cols);
 
 #define DYNAMIC_MEMORY_1
 //#define DYNAMIC_MEMORY_2
@@ -20,12 +22,13 @@ void main()
 #ifdef DYNAMIC_MEMORY_1
 	int n;
 	cout << "Введите размер массива: "; cin >> n;
-	int* arr = new int[n];
+	typedef char DataType;
+	DataType* arr = new DataType[n];
 
 	FillRand(arr, n);
 	Print(arr, n);
 
-	int value;//значение элемента
+	DataType value;//значение элемента
 	int index;//индекс вставляемого значения
 	cout << "Введите добавляемое значение в конец массива: "; cin >> value;
 	arr = push_back(arr, n, value);
@@ -111,3 +114,58 @@ void main()
 }
 //Stack - это модель памяти, из которой последний записанный элемент считывается первым.
 //push - вставить //pop - вытащить
+
+int** Allocate(const int rows, const int cols)
+{
+	//1) Создаём массив указателей :
+	int** arr = new int* [rows];
+
+	//2) Выделяем память под строки:
+	for (int i = 0; i < rows; i++)
+	{
+		arr[i] = new int[cols] {};
+	}
+	return arr;
+}
+
+void FillRand(int arr[], const int n, int minRand, int maxRand)
+{
+	for (int i = 0; i < n; i++)
+	{
+		//Обращение к элементам массива через арифметику указателей
+		//и оператор разъименования
+		*(arr + i) = rand() % (maxRand - minRand) + minRand;
+	}
+}
+void FillRand(double arr[], const int n, int minRand, int maxRand)
+{
+	minRand *= 100;
+	maxRand *= 100;
+	for (int i = 0; i < n; i++)
+	{
+		//Обращение к элементам массива через арифметику указателей
+		//и оператор разъименования
+		*(arr + i) = rand() % (maxRand - minRand) + minRand;
+		*(arr + i) /= 100;
+	}
+}
+
+void FillRand(char arr[], const int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		*(arr + i) = rand();
+	}
+}
+
+
+void FillRand(int** arr, const int rows, const int cols)
+{
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			arr[i][j] = rand() % 100;
+		}
+	}
+}
