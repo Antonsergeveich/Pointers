@@ -1,11 +1,11 @@
-#include<iostream>
+ï»¿#include<iostream>
 template<typename T>
 void FillRand(T arr[], const int n, T minRand, T maxRand)
 {
 	for (int i = 0; i < n; i++)
 	{
-		//Îáðàùåíèå ê ýëåìåíòàì ìàññèâà ÷åðåç àðèôìåòèêó óêàçàòåëåé
-		//è îïåðàòîð ðàçúèìåíîâàíèÿ
+		//ÐžÐ±Ñ€Ð°Ñ‰ÐµÐ½Ð¸Ðµ Ðº ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼ Ð¼Ð°ÑÑÐ¸Ð²Ð° Ñ‡ÐµÑ€ÐµÐ· Ð°Ñ€Ð¸Ñ„Ð¼ÐµÑ‚Ð¸ÐºÑƒ ÑƒÐºÐ°Ð·Ð°Ñ‚ÐµÐ»ÐµÐ¹
+		//Ð¸ Ð¾Ð¿ÐµÑ€Ð°Ñ‚Ð¾Ñ€ Ñ€Ð°Ð·ÑŠÐ¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ñ
 		*(arr + i) = rand() % (maxRand - minRand) + minRand;
 	}
 }
