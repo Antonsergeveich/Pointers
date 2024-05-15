@@ -1,4 +1,4 @@
-template<typename T>
+п»їtemplate<typename T>
 T* pop_back(T arr[], int& n)
 {
 	int* buffer = new int[--n];
@@ -36,10 +36,10 @@ T* erase(T arr[], int& n, int& index)
 template<typename T>
 T** pop_row_back(T** arr, int& rows)
 {
-	// переопределяем массив указателей
+	// РїРµСЂРµРѕРїСЂРµРґРµР»СЏРµРј РјР°СЃСЃРёРІ СѓРєР°Р·Р°С‚РµР»РµР№
 	int** buffer = new int* [--rows];
 	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
-	delete[] arr[rows]; //удаляем удаляемую строку из памяти
+	delete[] arr[rows]; //СѓРґР°Р»СЏРµРј СѓРґР°Р»СЏРµРјСѓСЋ СЃС‚СЂРѕРєСѓ РёР· РїР°РјСЏС‚Рё
 	delete[] arr;
 	return buffer;
 }
