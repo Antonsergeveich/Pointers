@@ -1,4 +1,5 @@
-﻿void Clear(int** arr, const int rows)
+﻿template<typename T>
+void Clear(T** arr, const int rows)
 {
 	//3)Сначала удаляем строки:
 	for (int i = 0; i < rows; i++)

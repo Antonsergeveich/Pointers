@@ -1,6 +1,8 @@
 ﻿#include"stdafx.h"
 #include"Allocate.h"
+#include"Allocate.cpp"
 #include"Clear.h"
+#include"Clear.cpp"
 #include"FillRand.h"
 #include"FillRand.cpp"
 #include"Print.h"

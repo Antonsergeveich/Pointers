@@ -1,2 +1,3 @@
 #pragma once
-void Clear(int** arr, const int rows);
+template<typename T>
+void Clear(T** arr, const int rows);

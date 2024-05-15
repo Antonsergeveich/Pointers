@@ -1,4 +1,5 @@
-﻿int** Allocate(const int rows, const int cols)
+﻿template<typename T>
+T** Allocate(const int rows, const int cols)
 {
 	//1) Создаём массив указателей :
 	int** arr = new int* [rows];
