@@ -73,19 +73,17 @@ TT void pop_col_front(T** arr, const int rows, int& cols)
 
 TT void erase_col(T** arr, const int rows, int& cols, const int index)
 {
+	
 	for (int i = 0; i < rows; i++)
 	{
-		T* buffer = new T[cols - 1] {};
+		T* buffer = new T[cols - 1]{};
 
-		for (int j = 0; j < index; j++)
+		for (int j = 0; j < cols-1; j++)
 		{
-			buffer[j] = arr[i][j];
+			buffer[j] = arr[i][j<index?j:j+1];
 		}
-		for (int j = cols; j > index; j--)
-		{
-			buffer[j - 1] = arr[i][j];
-		}
-		delete[] arr[i];arr[i] = buffer;
+		
+		delete[] arr[i]; arr[i] = buffer;
 	}
 	cols--;
 }
