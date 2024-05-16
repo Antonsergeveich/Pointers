@@ -1,11 +1,1 @@
-﻿template<typename T>
-void Clear(T** arr, const int rows)
-{
-	//3)Сначала удаляем строки:
-	for (int i = 0; i < rows; i++)
-	{
-		delete[] arr[i];
-	}
-	//4)Удаляем массив указателей:
-	delete[] arr;
-}
+﻿template<typename T>void Clear(T**arr,const int rows){for (int i = 0; i < rows; i++)delete[] arr[i];delete[] arr;}

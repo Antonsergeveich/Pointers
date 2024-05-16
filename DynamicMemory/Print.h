@@ -1,7 +1,3 @@
 #pragma once
-template<typename T>
-void Print(T arr[], const int n);
-
-template<typename T>
-void Print(T** arr, const int rows, const int cols);
-
+template<typename T>void Print(T arr[],const int n);
+template<typename T>void Print(T**arr,const int rows,const int cols);
