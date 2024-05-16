@@ -12,7 +12,7 @@ int** Allocate(const int rows, const int cols);
 
 
 //#define DYNAMIC_MEMORY_1
-//#define DYNAMIC_MEMORY_2
+#define DYNAMIC_MEMORY_2
 void main()
 {
 	setlocale(LC_ALL, "");
