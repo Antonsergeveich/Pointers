@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Clear.cpp" />
+    <ClCompile Include="FillRand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Pop.cpp" />
     <ClCompile Include="Print.cpp" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="Clear.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="FillRand.h" />
     <ClInclude Include="Pop.h" />
     <ClInclude Include="Print.h" />
     <ClInclude Include="Push.h" />

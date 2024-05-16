@@ -19,7 +19,7 @@ T* pop_front(T arr[], int& n)
 template<typename T>
 T* erase(T arr[], int& n, int& index)
 {
-	T* buffer = new T[--n];
+	/*T* buffer = new T[--n];
 	for (int i = n; i > index; --i)
 	{
 		buffer[i - 1] = arr[i];
@@ -30,7 +30,13 @@ T* erase(T arr[], int& n, int& index)
 	}
 	delete[] arr;
 	arr = buffer;
-	return arr;
+	return arr;*/
+	if(index >= n)return arr;
+	T* buffer = new T[--n];
+	for (int i = 0; i < n; i++)
+		buffer[i] = arr[i < index ? i : i + 1];
+	delete[] arr;
+	return buffer;
 }
 
 template<typename T>
