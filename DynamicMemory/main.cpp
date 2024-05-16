@@ -9,8 +9,6 @@
 #include"Pop.cpp"
 #include"FillRand.h"
 int** Allocate(const int rows, const int cols);
-
-
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
 void main()
