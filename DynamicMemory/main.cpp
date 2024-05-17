@@ -52,6 +52,7 @@ void main()
 
 	delete[] arr;
 #endif // DYNAMIC_MEMORY_1
+
 #ifdef DYNAMIC_MEMORY_2
 	int rows;
 	int cols;

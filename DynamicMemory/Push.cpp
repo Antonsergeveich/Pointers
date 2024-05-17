@@ -1,5 +1,4 @@
-﻿template<typename T>
-T* push_back(T arr[], int& n, T value)
+﻿template<typename T>T* push_back(T arr[], int& n, T value)
 {
 	T* buffer = new T[n + 1]; //1)Создаём буферный массив нужного размера:
 	for (int i = 0; i < n; i++) //2)Копируем значения из исходного массива в буферный:
@@ -16,8 +15,7 @@ T* push_back(T arr[], int& n, T value)
 	return arr;
 }
 
-template<typename T>
-T* push_front(T arr[], int& n, T value)
+template<typename T>T* push_front(T arr[], int& n, T value)
 {
 	T* buffer = new T[n + 1];
 	for (int i = 0; i < n; i++)
@@ -30,8 +28,7 @@ T* push_front(T arr[], int& n, T value)
 	return buffer;
 }
 
-template<typename T>
-T* insert(T arr[], int& n, T value, int& index)
+template<typename T>T* insert(T arr[], int& n, T value, int& index)
 {
 	T* buffer = new T[n + 1];
 	for (int i = n; i >= index; i--)
@@ -49,8 +46,7 @@ T* insert(T arr[], int& n, T value, int& index)
 	return arr;
 }
 
-template<typename T>
-T** push_row_front(T** arr, int& rows, const int cols)
+template<typename T>T** push_row_front(T** arr, int& rows, const int cols)
 {
 	T** buffer = new T * [rows + 1];
 
@@ -65,8 +61,7 @@ T** push_row_front(T** arr, int& rows, const int cols)
 	return buffer;
 }
 
-template<typename T>
-T** push_row_back(T** arr, int& rows, const int cols)
+template<typename T>T** push_row_back(T** arr, int& rows, const int cols)
 {
 	//1)Создаём буферный массив указателей нужного размера:
 	T** buffer = new T * [rows + 1];
@@ -86,8 +81,7 @@ T** push_row_back(T** arr, int& rows, const int cols)
 	return buffer;
 }
 
-template<typename T>
-T** insert_row(T** arr, int& rows, const int cols, int& index)
+template<typename T>T** insert_row(T** arr, int& rows, const int cols, int& index)
 {
 	T** buffer = new T * [rows + 1];
 	for (int i = rows; i >= index; i--)
@@ -104,8 +98,7 @@ T** insert_row(T** arr, int& rows, const int cols, int& index)
 	return buffer;
 }
 
-template<typename T>
-void push_col_back(T** arr, const int rows, int& cols)
+template<typename T>void push_col_back(T** arr, const int rows, int& cols)
 {
 	for (int i = 0; i < rows; i++)
 	{
@@ -121,8 +114,7 @@ void push_col_back(T** arr, const int rows, int& cols)
 	cols++;
 }
 
-template<typename T>
-void push_col_front(T** arr, const int rows, int& cols)
+template<typename T>void push_col_front(T** arr, const int rows, int& cols)
 {
 	for (int i = 0; i < rows; i++)
 	{
@@ -134,8 +126,7 @@ void push_col_front(T** arr, const int rows, int& cols)
 	cols++;
 }
 
-template<typename T>
-void insert_col(T** arr, const int rows, int& cols, const int index)
+template<typename T>void insert_col(T** arr, const int rows, int& cols, const int index)
 {
 	for (int i = 0; i < rows; i++)
 	{
