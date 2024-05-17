@@ -9,8 +9,8 @@
 #include"Pop.cpp"
 #include"FillRand.h"
 int** Allocate(const int rows, const int cols);
-//#define DYNAMIC_MEMORY_1
-#define DYNAMIC_MEMORY_2
+#define DYNAMIC_MEMORY_1
+//#define DYNAMIC_MEMORY_2
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -56,7 +56,7 @@ void main()
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 
-	/*arr = push_row_front(arr, rows, cols);
+	arr = push_row_front(arr, rows, cols);
 	FillRand(arr[0], cols);
 	Print(arr, rows, cols);
 
@@ -91,7 +91,7 @@ void main()
 	Print(arr, rows, cols);
 
 	pop_col_front(arr, rows, cols);
-	Print(arr, rows, cols);*/
+	Print(arr, rows, cols);
 
 	erase_col(arr, rows, cols, index);
 	Print(arr, rows, cols);
