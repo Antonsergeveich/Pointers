@@ -5,7 +5,6 @@
 #define NM T* buffer = new T[--n];
 #define NR T** buffer = new T * [rows + 1];
 #define RM T** buffer = new T* [--rows];
-
 #define NC T* buffer = new T[cols + 1]{};
 #define CM T* buffer = new T[cols - 1] {};
 #define BI buffer[i] = arr[i];
