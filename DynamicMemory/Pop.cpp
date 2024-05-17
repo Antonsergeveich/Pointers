@@ -19,18 +19,6 @@ T* pop_front(T arr[], int& n)
 template<typename T>
 T* erase(T arr[], int& n, int& index)
 {
-	/*T* buffer = new T[--n];
-	for (int i = n; i > index; --i)
-	{
-		buffer[i - 1] = arr[i];
-	}
-	for (int i = 0; i < index; i++)
-	{
-		buffer[i] = arr[i];
-	}
-	delete[] arr;
-	arr = buffer;
-	return arr;*/
 	if(index >= n)return arr;
 	T* buffer = new T[--n];
 	for (int i = 0; i < n; i++)
@@ -42,39 +30,22 @@ T* erase(T arr[], int& n, int& index)
 template<typename T>
 T** pop_row_back(T** arr, int& rows)
 {
-	// переопределяем массив указателей
-	T** buffer = new T* [--rows];
-	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
-	delete[] arr[rows]; //удаляем удаляемую строку из памяти
-	delete[] arr;
-	return buffer;
+	delete[] arr[rows - 1];
+	return pop_back(arr,rows);
 }
 
 template<typename T>
 T** pop_row_front(T** arr, int& rows)
 {
-	T** buffer = new T* [--rows];
-	for (int i = 0; i < rows; i++) buffer[i] = arr[i + 1];
 	delete[] arr[0];
-	delete[] arr;
-	return buffer;
+	return pop_front(arr,rows);
 }
 
 template<typename T>
 T** erase_row(T** arr, int& rows, int& index)
 {
-	rows--;
-	T** buffer = new T* [rows];
-	for (int i = rows; i > index; --i)
-	{
-		buffer[i - 1] = arr[i];
-	}
-	for (int i = 0; i < index; i++)
-	{
-		buffer[i] = arr[i];
-	}
-	delete[] arr;
-	return buffer;
+	delete[] arr[index];
+	return erase(arr,rows,index);
 }
 
 template<typename T>

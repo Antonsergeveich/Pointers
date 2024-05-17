@@ -48,54 +48,17 @@ template<typename T>T* insert(T arr[], int& n, T value, int& index)
 
 template<typename T>T** push_row_front(T** arr, int& rows, const int cols)
 {
-	T** buffer = new T * [rows + 1];
-
-	for (int i = 0; i < rows; i++)buffer[i + 1] = arr[i];
-
-	delete arr;
-
-	buffer[0] = new T[cols]{};
-
-	rows++;
-
-	return buffer;
+	return push_front(arr, rows, new T[cols]{});
 }
 
 template<typename T>T** push_row_back(T** arr, int& rows, const int cols)
 {
-	//1)Создаём буферный массив указателей нужного размера:
-	T** buffer = new T * [rows + 1];
-
-	//2)Копируем строки из исходного массива в массив указателей:
-	for (int i = 0; i < rows; i++) buffer[i] = arr[i];
-
-	//3)Удаляем исходный массив указателей:
-	delete[] arr;
-
-	//4)Создаём строку и добавляем её в массив:
-	buffer[rows] = new T[cols]{};
-
-	//5)После добавления строки в массив, количество его строк увеличивается:
-	rows++;
-
-	return buffer;
+	return push_back(arr, rows, new T[cols]{});
 }
 
 template<typename T>T** insert_row(T** arr, int& rows, const int cols, int& index)
 {
-	T** buffer = new T * [rows + 1];
-	for (int i = rows; i >= index; i--)
-	{
-		buffer[i + 1] = arr[i];
-	}
-	for (int i = 0; i < index; i++)
-	{
-		buffer[i] = arr[i];
-	}
-	delete[] arr;
-	buffer[index] = new T[cols]{};
-	rows++;
-	return buffer;
+	return insert(arr, rows, new T[cols]{}, index);
 }
 
 template<typename T>void push_col_back(T** arr, const int rows, int& cols)

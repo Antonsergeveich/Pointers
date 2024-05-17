@@ -8,7 +8,8 @@
 #include"Pop.h"
 #include"Pop.cpp"
 #include"FillRand.h"
-int** Allocate(const int rows, const int cols);
+template<typename T>
+T** Allocate(const int rows, const int cols);
 //#define DYNAMIC_MEMORY_1
 #define DYNAMIC_MEMORY_2
 void main()
@@ -52,13 +53,14 @@ void main()
 #endif // DYNAMIC_MEMORY_1
 
 #ifdef DYNAMIC_MEMORY_2
+	typedef double DataType;
 	int rows;
 	int cols;
 	int index;
 	cout << "Введите количество строк: "; cin >> rows;
 	cout << "Введите количество элементов строки: "; cin >> cols;
 	
-	int** arr = Allocate(rows, cols);
+	DataType** arr = Allocate<DataType>(rows, cols);
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 
@@ -111,15 +113,16 @@ void main()
 //Stack - это модель памяти, из которой последний записанный элемент считывается первым.
 //push - вставить //pop - вытащить
 
-int** Allocate(const int rows, const int cols)
+template<typename T>
+T** Allocate(const int rows, const int cols)
 {
 	//1) Создаём массив указателей :
-	int** arr = new int* [rows];
+	T** arr = new T* [rows];
 
 	//2) Выделяем память под строки:
 	for (int i = 0; i < rows; i++)
 	{
-		arr[i] = new int[cols] {};
+		arr[i] = new T[cols] {};
 	}
 	return arr;
 }
