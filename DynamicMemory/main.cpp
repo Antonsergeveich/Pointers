@@ -64,7 +64,7 @@ void main()
 	FillRand(arr, rows, cols);
 	Print(arr, rows, cols);
 
-	arr = push_row_front(arr, rows, cols);
+	/*arr = push_row_front(arr, rows, cols);
 	FillRand(arr[0], cols);
 	Print(arr, rows, cols);
 
@@ -95,11 +95,13 @@ void main()
 
 	cout << "Введите индекс вставляемого столбца: "; cin >> index;
 	insert_col(arr, rows, cols, index);
-	Print(arr, rows, cols);
+	Print(arr, rows, cols);*/
 
+	cout << "pop_col_back: " << endl;
 	pop_col_back(arr, rows, cols);
 	Print(arr, rows, cols);
 
+	cout << "pop_col_front: " << endl;
 	pop_col_front(arr, rows, cols);
 	Print(arr, rows, cols);
 
