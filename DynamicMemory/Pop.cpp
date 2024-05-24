@@ -14,7 +14,7 @@ template<typename T>T* pop_front(T arr[], int& n)
 	return buffer;
 }
 
-template<typename T>T* erase(T arr[], int& n, int& index)
+template<typename T>T* erase(T arr[], int& n, const int& index)
 {
 	if(index >= n)return arr;
 	T* buffer = new T[--n];
@@ -78,16 +78,16 @@ template<typename T>void pop_col_front(T** arr, const int rows, int& cols)
 	}*/
 }
 
-template<typename T>void erase_col(T** arr, const int rows, int& cols, const int index)
+template<typename T>T* erase_col(T** arr, const int rows, int& cols, const int &index)
 {
-	/*for (int i = 0; i < rows; i++)
+	for (int i = 0; i < rows; i++)
 	{
-		delete[] arr[index];
-		return arr[i] = erase(arr[i], cols, index);
+		delete[] arr[i];
+	  	return erase(arr[i], cols, index);
 		cols++;
 	}
-	cols--;*/
-	for (int i = 0; i < rows; i++)
+	cols--;
+	/*for (int i = 0; i < rows; i++)
 	{
 		T* buffer = new T[cols - 1] {};
 
@@ -102,5 +102,5 @@ template<typename T>void erase_col(T** arr, const int rows, int& cols, const int
 		delete[] arr[i];
 		arr[i] = buffer;
 	}
-	cols--;
+	cols--;*/
 }
